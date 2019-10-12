@@ -9,10 +9,6 @@ public abstract class TruthTableItem {
         this.truthTableItemArray[0] = itemChar;
     }
 
-    public static int getArraySize() {
-        return arraySize;
-    }
-
     public char[] getTruthTableItemArray() {
         return truthTableItemArray;
     }

@@ -12,7 +12,7 @@ public class StringsUtil {
         Proposition item = new Proposition(propositionChar);
         char[] propositionArray = item.getTruthTableItemArray();
         for(int i=1; i<propositionSize; i++){ //começando no 1 porque a pos 0 é a propria proposicao
-            if(i<propositionSize/2){
+            if(i<=propositionSize/2){
                 propositionArray[i] = 'V';
             }else{
                 propositionArray[i] = 'F';
