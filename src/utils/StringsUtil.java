@@ -91,7 +91,7 @@ public class StringsUtil {
         noSpacesOnlyLetters.chars().distinct().forEach(c -> noSpacesOnlyLettersNoDuplicates.append((char) c)); // Remove as duplicatas mas nao manda exception
                                                                                                                // pois a equacao pode repetir a mesma preposicao
 
-        if(noSpacesOnlyLetters.length()>4){
+        if(noSpacesOnlyLettersNoDuplicates.length()>4){
             throw new IllegalArgumentException("Maximum of 4 propositions allowed!");
         }
         return noSpacesOnlyLettersNoDuplicates.toString();
