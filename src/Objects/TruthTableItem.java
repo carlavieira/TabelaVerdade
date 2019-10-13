@@ -4,7 +4,7 @@ public abstract class TruthTableItem {
     private static int arraySize = 17;
     private char[] truthTableItemArray;
 
-    public TruthTableItem(char itemChar){
+    public TruthTableItem(char itemChar) {
         this.truthTableItemArray = new char[arraySize];
         this.truthTableItemArray[0] = itemChar;
     }
@@ -18,10 +18,10 @@ public abstract class TruthTableItem {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder finalString = new StringBuilder();
         finalString.append("\n");
-        for(int i=0; i< arraySize; i++){
+        for (int i = 0; i < arraySize; i++) {
             finalString.append(" [" + truthTableItemArray[i] + "]");
         }
         finalString.append("\n");
