@@ -83,8 +83,17 @@ public class StringsUtil {
         return equation.replaceAll("\\s+",""); // Retirando os espaços
     }
 
-    private static String getPropositions(String equation){
-        return removeSpaces(equation).replaceAll("[^A-Za-z]+", ""); //Removendo tudo que nao é letra
-    }
+    private static String getPropositions(String equation) throws IllegalArgumentException{
+        String noSpacesOnlyLetters = removeSpaces(equation).replaceAll("[^A-Za-z]+", ""); //Removendo tudo que nao é letra
+        char[] inp = noSpacesOnlyLetters.toCharArray(); //Pegando cada caractere da string
 
+        StringBuilder noSpacesOnlyLettersNoDuplicates = new StringBuilder();
+        noSpacesOnlyLetters.chars().distinct().forEach(c -> noSpacesOnlyLettersNoDuplicates.append((char) c)); // Remove as duplicatas mas nao manda exception
+                                                                                                               // pois a equacao pode repetir a mesma preposicao
+
+        if(noSpacesOnlyLetters.length()>4){
+            throw new IllegalArgumentException("Maximum of 4 propositions allowed!");
+        }
+        return noSpacesOnlyLettersNoDuplicates.toString();
+    }
 }
