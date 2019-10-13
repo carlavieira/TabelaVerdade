@@ -8,16 +8,58 @@ import java.util.ArrayList;
 public class StringsUtil {
     //private static final int arraySize = 17;
 
-    private static Proposition setPropositionDefaultValues(char propositionChar,int propositionSize, int propositionPos){
+    private static Proposition setPropositionDefaultValues(char propositionChar,int propositionSize, int propositionPos, String equation, int currentProposition){
         Proposition item = new Proposition(propositionChar);
         char[] propositionArray = item.getTruthTableItemArray();
-        for(int i=1; i<propositionSize; i++){ //começando no 1 porque a pos 0 é a propria proposicao
-            if(i<=propositionSize/2){
-                propositionArray[i] = 'V';
-            }else{
-                propositionArray[i] = 'F';
+        String propositions = getPropositions(equation);
+        int amoutPropositions = propositions.length();
+        //System.out.println(amoutPropositions);
+        //System.out.println(currentProposition);
+
+         int currentPropositions = amoutPropositions;
+            if (currentProposition == 4) {
+                for (int i = 1; i < propositionSize; i++) { //começando no 1 porque a pos 0 é a propria proposicao
+                    if (i <= propositionSize / 2) {
+                        propositionArray[i] = 'V';
+                    } else {
+                        propositionArray[i] = 'F';
+                    }
+                }
+            } else if (currentProposition == 3) {
+                int cont = 1;
+                for (int i = 1; i < propositionSize; i++) {
+                    if (cont <= 4 || cont > 8 && cont <= 12) {
+                        propositionArray[i] = 'V';
+
+                    } else if (cont > 4 && cont <= 8 || cont > 12 && cont <= 16) {
+                        propositionArray[i] = 'F';
+                    }
+                    cont++;
+                }
+            } else if (currentProposition == 2) {
+                int cont = 1;
+                for (int i = 1; i < propositionSize; i+=2){
+                    if (cont % 2 != 0) {
+                        propositionArray[i] = 'V';
+                        propositionArray[i+1] = 'V';
+                    } else {
+                        propositionArray[i] = 'F';
+                        propositionArray[i+1] = 'F';
+                    }
+                    cont++;
+                }
+            }  else if (currentProposition == 1) {
+                int cont = 1;
+                for (int i = 1; i < propositionSize; i++){
+                    if (cont % 2 != 0) {
+                        propositionArray[i] = 'V';
+                    } else {
+                        propositionArray[i] = 'F';
+                    }
+                    cont++;
+                }
             }
-        }
+
         item.setTruthTableItemArray(propositionArray);
         return item;
     }
@@ -28,9 +70,11 @@ public class StringsUtil {
         int propositionSize = (int) Math.pow(2, stringSize) + 1; //tamanho real das proposicoes (nem sempre ocupam o vetor inteiro)
 
         ArrayList propositionsInArray = new ArrayList();
-
+        int currentProposition = stringSize;
         for (int i = 0; i<stringSize; i++){
-            propositionsInArray.add(setPropositionDefaultValues(propositions.charAt(i), propositionSize, i));
+            propositionsInArray.add(setPropositionDefaultValues(propositions.charAt(i), propositionSize, i, equation, currentProposition));
+            currentProposition--;
+
         }
         return propositionsInArray;
     }
@@ -42,4 +86,5 @@ public class StringsUtil {
     private static String getPropositions(String equation){
         return removeSpaces(equation).replaceAll("[^A-Za-z]+", ""); //Removendo tudo que nao é letra
     }
+
 }

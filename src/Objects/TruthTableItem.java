@@ -1,7 +1,7 @@
 package Objects;
 
 public abstract class TruthTableItem {
-    private static final int arraySize = 17;
+    private static int arraySize = 17;
     private char[] truthTableItemArray;
 
     public TruthTableItem(char itemChar){
