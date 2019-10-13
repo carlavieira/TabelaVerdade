@@ -93,7 +93,7 @@ public class StringsUtil {
     }
 
     private static String getConectives(String equation) throws IllegalArgumentException{
-        String noSpacesOnlySymbols = removeSpaces(equation).replaceAll("[A-Za-z]", ""); //Removendo tudo que nao é simbolo
+        String noSpacesOnlySymbols = removeSpaces(equation).replaceAll("[A-Za-z^()]+", ""); //Removendo tudo que nao é simbolo
 
         if(noSpacesOnlySymbols.length()>6){
             throw new IllegalArgumentException("Maximum of 6 conectives allowed!");
