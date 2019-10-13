@@ -1,22 +1,17 @@
 package utils;
 
+import Objects.Conectives;
 import Objects.Proposition;
-import Objects.TruthTableItem;
 
 import java.util.ArrayList;
 
 public class StringsUtil {
-    //private static final int arraySize = 17;
 
-    private static Proposition setPropositionDefaultValues(char propositionChar,int propositionSize, int propositionPos, String equation, int currentProposition){
+    private static Proposition setPropositionDefaultValues(char propositionChar,int propositionSize, String equation, int currentProposition){
         Proposition item = new Proposition(propositionChar);
         char[] propositionArray = item.getTruthTableItemArray();
         String propositions = getPropositions(equation);
-        int amoutPropositions = propositions.length();
-        //System.out.println(amoutPropositions);
-        //System.out.println(currentProposition);
-
-         int currentPropositions = amoutPropositions;
+        int amountPropositions = propositions.length();
             if (currentProposition == 4) {
                 for (int i = 1; i < propositionSize; i++) { //começando no 1 porque a pos 0 é a propria proposicao
                     if (i <= propositionSize / 2) {
@@ -64,23 +59,46 @@ public class StringsUtil {
         return item;
     }
 
-    public static ArrayList propositionList(String equation){
-        String propositions = getPropositions(equation);
-        int stringSize = propositions.length();
-        int propositionSize = (int) Math.pow(2, stringSize) + 1; //tamanho real das proposicoes (nem sempre ocupam o vetor inteiro)
+    private static int getRealSize(String propositions){ //Obs: pode ser usado pra calcular o tamanho dos conectivos
+        return ((int) Math.pow(2, propositions.length()) + 1); //tamanho real das proposicoes (nem sempre ocupam o vetor inteiro).
+    }
 
+    public static ArrayList conectivesList(String equation){ //Devolve a lista dos conectivos vazios (somente o indice 0 preenchido com seu caractere)
+        String conectives = getConectives(equation);
+        int conectiveSize = getRealSize(getPropositions(equation));
+        int stringSize = conectives.length();
+        ArrayList conectivesInArray = new ArrayList();
+        for (int i = 0; i<stringSize; i++){
+            conectivesInArray.add(new Conectives(conectives.charAt(i)));
+        }
+        return conectivesInArray;
+    }
+
+    public static ArrayList propositionList(String equation){ //Devolve a lista de propositivos preenchidos com os valores Default
+        String propositions = getPropositions(equation);
+        int propositionSize = getRealSize(propositions);
+        int stringSize = propositions.length();
         ArrayList propositionsInArray = new ArrayList();
+
         int currentProposition = stringSize;
         for (int i = 0; i<stringSize; i++){
-            propositionsInArray.add(setPropositionDefaultValues(propositions.charAt(i), propositionSize, i, equation, currentProposition));
+            propositionsInArray.add(setPropositionDefaultValues(propositions.charAt(i), propositionSize, equation, currentProposition));
             currentProposition--;
-
         }
         return propositionsInArray;
     }
 
     private static String removeSpaces(String equation){
         return equation.replaceAll("\\s+",""); // Retirando os espaços
+    }
+
+    private static String getConectives(String equation) throws IllegalArgumentException{
+        String noSpacesOnlySymbols = removeSpaces(equation).replaceAll("[A-Za-z]", ""); //Removendo tudo que nao é simbolo
+
+        if(noSpacesOnlySymbols.length()>6){
+            throw new IllegalArgumentException("Maximum of 6 conectives allowed!");
+        }
+        return noSpacesOnlySymbols;
     }
 
     private static String getPropositions(String equation) throws IllegalArgumentException{
@@ -90,7 +108,6 @@ public class StringsUtil {
         StringBuilder noSpacesOnlyLettersNoDuplicates = new StringBuilder();
         noSpacesOnlyLetters.chars().distinct().forEach(c -> noSpacesOnlyLettersNoDuplicates.append((char) c)); // Remove as duplicatas mas nao manda exception
                                                                                                                // pois a equacao pode repetir a mesma preposicao
-
         if(noSpacesOnlyLettersNoDuplicates.length()>4){
             throw new IllegalArgumentException("Maximum of 4 propositions allowed!");
         }
