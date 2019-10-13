@@ -20,9 +20,12 @@ public abstract class TruthTableItem {
     @Override
     public String toString(){
         StringBuilder finalString = new StringBuilder();
+        finalString.append("\n");
         for(int i=0; i< arraySize; i++){
             finalString.append(" [" + truthTableItemArray[i] + "]");
         }
+        finalString.append("\n");
+
         return finalString.toString();
     }
 }

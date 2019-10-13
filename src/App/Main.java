@@ -4,7 +4,7 @@ import utils.StringsUtil;
 
 public class Main {
     public static void main (String args[]){
-        String equation = " q^p";
+        String equation = " q^p =s";
         System.out.println(StringsUtil.propositionList(equation).toString());
     }
 }
