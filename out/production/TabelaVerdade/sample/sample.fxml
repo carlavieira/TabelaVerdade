@@ -1,94 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import com.gluonhq.charm.glisten.control.AutoCompleteTextField?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.Pane?>
 
-<BorderPane prefHeight="422.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-    <center>
-        <SplitPane dividerPositions="0.3862876254180602" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="376.0" prefWidth="327.0">
-                    <children>
-                        <Button layoutX="86.0" layoutY="216.0" mnemonicParsing="false" prefWidth="50.0" text="Q">
-                            <padding>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </padding></Button>
-                        <Button layoutX="73.0" layoutY="339.0" mnemonicParsing="false" text="Computar ">
-                            <padding>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </padding></Button>
-                        <Button layoutX="27.0" layoutY="130.0" mnemonicParsing="false" prefWidth="50.0" text="-&gt;">
-                            <padding>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </padding></Button>
-                        <Button layoutX="86.0" layoutY="174.0" mnemonicParsing="false" prefWidth="50.0" text="v">
-                            <padding>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </padding></Button>
-                        <Button layoutX="86.0" layoutY="130.0" mnemonicParsing="false" prefWidth="50.0" text="^">
-                            <padding>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </padding></Button>
-                        <Button layoutX="145.0" layoutY="130.0" minHeight="0.0" mnemonicParsing="false" prefWidth="50.0" text="~">
-                            <padding>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </padding></Button>
-                        <TextField fx:id="campo" layoutX="39.0" layoutY="46.0" />
-                        <Button layoutX="26.0" layoutY="174.0" mnemonicParsing="false" prefWidth="50.0" text="&lt;--&gt;">
-                            <padding>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </padding></Button>
-                        <Button layoutX="145.0" layoutY="174.0" mnemonicParsing="false" prefWidth="50.0" text="ou..ou">
-                            <padding>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </padding></Button>
-                        <Button layoutX="27.0" layoutY="216.0" mnemonicParsing="false" prefWidth="50.0" text="P">
-                            <padding>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </padding></Button>
-                        <Button layoutX="145.0" layoutY="216.0" mnemonicParsing="false" prefWidth="50.0" text="R">
-                            <padding>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </padding></Button>
-                        <Button layoutX="86.0" layoutY="258.0" mnemonicParsing="false" prefWidth="50.0" text="S">
-                            <padding>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </padding></Button>
-                        <Button layoutX="145.0" layoutY="258.0" mnemonicParsing="false"  prefWidth="50.0" text=")">
-                            <padding>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </padding>
-                        </Button>
-                        <Button layoutX="27.0" layoutY="258.0" mnemonicParsing="false"  prefWidth="50.0" text="(">
-                            <padding>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </padding>
-                        </Button>
-                        <Button fx:id="apagar" layoutX="228.0" layoutY="43.0" mnemonicParsing="false"  text="Reiniciar" />
-                    </children>
-                </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                    <children>
-                        <GridPane layoutX="58.0" layoutY="96.0" prefHeight="155.0" prefWidth="301.0">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            </rowConstraints>
-                        </GridPane>
-                    </children></AnchorPane>
-            </items>
-        </SplitPane>
-    </center>
-</BorderPane>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AutoCompleteTextField layoutX="237.0" layoutY="73.0" />
+        <Button layoutX="108.0" layoutY="79.0" mnemonicParsing="false" text="Button" />
+        <Button layoutX="81.0" layoutY="173.0" mnemonicParsing="false" text="Button" />
+    </children>
+</Pane>

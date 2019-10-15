@@ -20,8 +20,6 @@ public class TruthTableItem {
         this.truthTableItemArray = truthTableItemArray;
     }
 
-
-
     public char getItemChar() {
         return itemChar;
     }

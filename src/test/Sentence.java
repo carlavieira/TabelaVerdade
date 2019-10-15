@@ -1,10 +1,11 @@
 package test;
 
+import java.util.Vector;
+
 public class Sentence {
     private String sentence;
     private TruthTableItem[] truthTableSentenceArray;
     private static int sentenceOrder;
-
 
     public Sentence(String sentence) {
         this.sentence = sentence;
@@ -16,22 +17,22 @@ public class Sentence {
         TruthTableItem[] truthTableSentenceArray = new TruthTableItem[sentence.length()];
         for (int i = 0; i<sentence.length(); i++){
             switch (sentence.charAt(i)){
-                case "p": case "q": case "r": case "t":
+                case 'p': case 'q': case 'r': case 't':
                     truthTableSentenceArray[i]=generateTruthTableSentenceArrayProp(sentence.charAt(i));
                     break;
-                case "∧": case "∨": case "⊕": case "|": case ">":
+                case '∧': case '∨': case '⊕': case '|': case '>':
 
                     break;
-                case "~":
+                case '~':
                     switch (sentence.charAt(i+1)){
-                        case "p": case "q": case "r": case "t":
+                        case 'p': case 'q': case 'r': case 't':
                             truthTableSentenceArray[i]=generateTruthTableSentenceArrayNegation(sentence.charAt(i), this.truthTableSentenceArray[i+1]);
-                        case "(":
+                            break;
+                        case '(':
                             Sentence posteriorSentence = findPosteriorSentence(i);
-                            truthTableSentenceArray[i]=generateTruthTableSentenceArrayNegation(posteriorSentence);
-
+                            truthTableSentenceArray[i] = generateTruthTableSentenceArrayNegation(sentence.charAt(i), posteriorSentence);
+                            break;
                     }
-
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + sentence.charAt(i));
@@ -46,19 +47,20 @@ public class Sentence {
         return null;
     }
 
-
     public TruthTableItem generateTruthTableSentenceArrayProp(char item){
         TruthTableItem vectorItem = new TruthTableItem(item, this.sentenceOrder);
+        char[] vectorChar = {'V', 'V'};
         this.sentenceOrder++;
         switch (item){
-            case "p":
-                vectorItem.setTruthTableItemArray(["V", "V"]);
+            case 'p':
+                vectorItem.setTruthTableItemArray(vectorChar);
                 return vectorItem;
-                break;
+            case 'q':
+                vectorItem.setTruthTableItemArray(vectorChar);
+                return vectorItem;
             default:
                 throw new IllegalStateException("Unexpected value: " + item);
         }
-        return null;
     }
 
     public Sentence findPosteriorSentence(int i) {
@@ -90,7 +92,7 @@ public class Sentence {
     public TruthTableItem generateTruthTableSentenceArrayNegation(char item,Sentence sentence){
         TruthTableItem vectorItem = new TruthTableItem(item, this.sentenceOrder);
         this.sentenceOrder++;
-        vectorItem.setTruthTableItemArray(tableitemPosterior.deny());
+        vectorItem.setTruthTableItemArray(vectorItem.deny());
         return vectorItem;
     }
 
