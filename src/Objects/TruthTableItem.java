@@ -1,7 +1,7 @@
 package Objects;
 
 public abstract class TruthTableItem {
-    private static int arraySize = 17; // TODO Change to 16 and refactor methods
+    private static int arraySize = 16; // TODO Change to 16 and refactor methods
     private char[] truthTableItemArray;
     private char character;
 

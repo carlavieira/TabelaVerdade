@@ -11,7 +11,7 @@ public class StringsUtil {
         Proposition item = new Proposition(propositionChar);
         char[] propositionArray = item.getTruthTableItemArray();
         if (currentProposition == 4) {
-            for (int i = 1; i < propositionSize; i++) { //começando no 1 porque a pos 0 é a propria proposicao
+            for (int i = 0; i < propositionSize-1; i++) { //começando no 1 porque a pos 0 é a propria proposicao
                 if (i <= propositionSize / 2) {
                     propositionArray[i] = 'V';
                 } else {
@@ -20,7 +20,7 @@ public class StringsUtil {
             }
         } else if (currentProposition == 3) {
             int cont = 1;
-            for (int i = 1; i < propositionSize; i++) {
+            for (int i = 0; i < propositionSize-1; i++) {
                 if (cont <= 4 || cont > 8 && cont <= 12) {
                     propositionArray[i] = 'V';
 
@@ -31,7 +31,7 @@ public class StringsUtil {
             }
         } else if (currentProposition == 2) {
             int cont = 1;
-            for (int i = 1; i < propositionSize; i += 2) {
+            for (int i = 0; i < propositionSize-1; i += 2) {
                 if (cont % 2 != 0) {
                     propositionArray[i] = 'V';
                     propositionArray[i + 1] = 'V';
@@ -43,7 +43,7 @@ public class StringsUtil {
             }
         } else if (currentProposition == 1) {
             int cont = 1;
-            for (int i = 1; i < propositionSize; i++) {
+            for (int i = 0; i < propositionSize-1; i++) {
                 if (cont % 2 != 0) {
                     propositionArray[i] = 'V';
                 } else {
