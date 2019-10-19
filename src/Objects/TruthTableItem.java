@@ -1,12 +1,13 @@
 package Objects;
 
 public abstract class TruthTableItem {
-    private static int arraySize = 17;
+    private static int arraySize = 16;
     private char[] truthTableItemArray;
+    private char character;
 
     public TruthTableItem(char itemChar) {
-        this.truthTableItemArray = new char[arraySize];
-        this.truthTableItemArray[0] = itemChar;
+        this.setTruthTableItemArray(new char[arraySize]);
+        this.setCharacter(itemChar);
     }
 
     public char[] getTruthTableItemArray() {
@@ -17,12 +18,21 @@ public abstract class TruthTableItem {
         this.truthTableItemArray = truthTableItemArray;
     }
 
+    public char getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(char character) {
+        this.character = character;
+    }
+
     @Override
     public String toString() {
         StringBuilder finalString = new StringBuilder();
         finalString.append("\n");
+        finalString.append("Character: " + this.getCharacter() + ", Array: ");
         for (int i = 0; i < arraySize; i++) {
-            finalString.append(" [" + truthTableItemArray[i] + "]");
+            finalString.append(" [" + this.getTruthTableItemArray()[i] + "]");
         }
         finalString.append("\n");
 
