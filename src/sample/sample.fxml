@@ -1,8 +1,12 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<GridPane fx:controller="sample.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Button layoutX="480.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" text="Gerar" />
+        <Label fx:id="sentence" alignment="CENTER_RIGHT" layoutX="13.0" layoutY="14.0" prefHeight="32.0" prefWidth="459.0" style="-fx-background-color: 000;" text="Sentence" />
+    </children>
+</Pane>
