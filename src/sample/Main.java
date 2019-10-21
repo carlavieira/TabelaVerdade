@@ -12,6 +12,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Calculadora Tabela Verdade");
         primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.centerOnScreen();
         primaryStage.show();
     }
 
