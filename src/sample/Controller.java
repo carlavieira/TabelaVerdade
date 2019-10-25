@@ -12,6 +12,9 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
+    char[] propositions = new char[]{'p', 'q', 'r', 's'};
+    char[] connectors = new char[]{'¬','∧', 'v', '.', '→', '↔'};
+
     @FXML
     private TextField display;
     @FXML
@@ -53,39 +56,86 @@ public class Controller implements Initializable {
     @FXML
     void handleButtonAction(ActionEvent event) {
         if (event.getSource() == predicatePButton) {
-            display.setText(display.getText() + "p");
+            if (permissionPropositions()) display.setText(display.getText() + "p");
         } else if (event.getSource() == predicateQButton) {
-            display.setText(display.getText() + "q");
+            if (permissionPropositions()) display.setText(display.getText() + "q");
         } else if (event.getSource() == predicateRButton) {
-            display.setText(display.getText() + "r");
+            if (permissionPropositions()) display.setText(display.getText() + "r");
         } else if (event.getSource() == predicateSButton) {
-            display.setText(display.getText() + "s");
+            if (permissionPropositions()) display.setText(display.getText() + "s");
         } else if (event.getSource() == negationButton) {
-            display.setText(display.getText() + "¬");
+            if (pemissionNegation()) display.setText(display.getText() + "¬");
         } else if (event.getSource() == andButton) {
-            display.setText(display.getText() + "∧");
+            if (permissionConnectors()) display.setText(display.getText() + "∧");
         } else if (event.getSource() == orButton) {
-            display.setText(display.getText() + "v");
+            if (permissionConnectors()) display.setText(display.getText() + "v");
         } else if (event.getSource() == xorButton) {
-            display.setText(display.getText() + ".");
+            if (permissionConnectors())  display.setText(display.getText() + ".");
         } else if (event.getSource() == implicationButton) {
-            display.setText(display.getText() + "→");
+            if (permissionConnectors()) display.setText(display.getText() + "→");
         } else if (event.getSource() == biconditionalButton) {
-            display.setText(display.getText() + "↔");
+            if (permissionConnectors()) display.setText(display.getText() + "↔");
         } else if (event.getSource() == parenthesesLeftButton) {
-            display.setText(display.getText() + "(");
+            if (permissionParenthesesLeft()) display.setText(display.getText() + "(");
         } else if (event.getSource() == parenthesesRightButton) {
-            display.setText(display.getText() + ")");
+            if (permissionParenthesesRight()) display.setText(display.getText() + ")");
         } else if (event.getSource() == deleteButton) {
-            if (display.getText().length()>1){
-                display.setText(display.getText().substring(0, (display.getText().length()-1)));
-            } else {
-                display.setText("");
-            }
+            if (display.getText().length()>0) display.setText(display.getText().substring(0, (display.getText().length()-1)));
         } else if (event.getSource() == generateButton) {
             //conexão com back
             }
         }
+
+
+    boolean permissionPropositions(){
+        char[] arrayChar = display.getText().toCharArray();
+        if (arrayChar.length>0) return (new String(connectors).indexOf(arrayChar[arrayChar.length-1])!=-1||arrayChar[arrayChar.length-1]=='(');
+        else return true;
+    }
+
+    boolean pemissionNegation(){
+        char[] arrayChar = display.getText().toCharArray();
+        if (arrayChar.length>0) return (arrayChar[arrayChar.length-1]=='(') ;
+        else return true;
+    }
+
+    boolean permissionConnectors(){
+        int numConnectors = 0;
+        char[] arrayChar = display.getText().toCharArray();
+        if (arrayChar.length>0){
+            for (char element : arrayChar) {
+                if (new String(connectors).indexOf(element)!=-1) numConnectors++;
+            }
+            if (numConnectors<6){
+                return (new String(propositions).indexOf(arrayChar[arrayChar.length-1])!=-1||arrayChar[arrayChar.length-1]==')');
+            }
+        }
+        return false;
+    }
+
+    boolean permissionParenthesesLeft(){
+        char[] arrayChar = display.getText().toCharArray();
+        if (arrayChar.length>0) return (new String(connectors).indexOf(arrayChar[arrayChar.length-1])!=-1||arrayChar[arrayChar.length-1]=='(');
+        else return true;
+    }
+
+    boolean permissionParenthesesRight(){
+        int numParenthesesOpen = 0;
+        char[] arrayChar = display.getText().toCharArray();
+        if (arrayChar.length>0){
+            for (char element : arrayChar) {
+                if (element == '(') numParenthesesOpen++;
+                if (element == ')') numParenthesesOpen--;
+            }
+            System.out.println(numParenthesesOpen);
+            if (numParenthesesOpen>0){
+                return (new String(propositions).indexOf(arrayChar[arrayChar.length-1])!=-1||arrayChar[arrayChar.length-1]==')');
+            }
+        }
+        return false;
+    }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
