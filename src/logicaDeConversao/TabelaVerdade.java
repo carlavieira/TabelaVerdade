@@ -61,7 +61,6 @@ public class TabelaVerdade {
 			}
 		}
 		this.numeroDeLinhasUsadas = (int) Math.pow(2, conjuntoPreposicoes.size());
-		System.out.println("Numero de linhas usadas: " + numeroDeLinhasUsadas);
 	}
 
 	private void pegaValoresSimplesDasPreposicoes() {
@@ -298,7 +297,7 @@ public class TabelaVerdade {
 	}
 
 	private void nega(int indiceValor, int indiceDestino) {
-		for (int i = 1; i < 16; i++) {
+		for (int i = 1; i < 17; i++) {
 			if (matrizLogicaString[indiceValor][i].matches("V")) {
 				matrizLogicaString[indiceDestino][i] = "F";
 			} else if (matrizLogicaString[indiceValor][i].matches("F")) {
