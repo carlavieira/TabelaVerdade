@@ -10,10 +10,11 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 public class Controller implements Initializable {
 
     char[] propositions = new char[]{'p', 'q', 'r', 's'};
-    char[] connectors = new char[]{'¬','∧', 'v', '.', '→', '↔'};
+    char[] connectors = new char[]{'¬','∧', 'v', '*', '→', '↔'};
 
     @FXML
     private TextField display;
@@ -70,7 +71,7 @@ public class Controller implements Initializable {
         } else if (event.getSource() == orButton) {
             if (permissionConnectors()) display.setText(display.getText() + "v");
         } else if (event.getSource() == xorButton) {
-            if (permissionConnectors())  display.setText(display.getText() + ".");
+            if (permissionConnectors())  display.setText(display.getText() + "*");
         } else if (event.getSource() == implicationButton) {
             if (permissionConnectors()) display.setText(display.getText() + "→");
         } else if (event.getSource() == biconditionalButton) {
