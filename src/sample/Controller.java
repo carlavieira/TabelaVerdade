@@ -82,7 +82,10 @@ public class Controller implements Initializable {
         } else if (event.getSource() == deleteButton) {
             if (display.getText().length()>0) display.setText(display.getText().substring(0, (display.getText().length()-1)));
         } else if (event.getSource() == generateButton) {
-            //conexão com back
+            TableView tabela = new TableView<>();
+            char[] arrayChar = display.getText().toCharArray();
+            for (char element: arrayChar) {
+            }
             }
         }
 
@@ -127,7 +130,6 @@ public class Controller implements Initializable {
                 if (element == '(') numParenthesesOpen++;
                 if (element == ')') numParenthesesOpen--;
             }
-            System.out.println(numParenthesesOpen);
             if (numParenthesesOpen>0){
                 return (new String(propositions).indexOf(arrayChar[arrayChar.length-1])!=-1||arrayChar[arrayChar.length-1]==')');
             }
