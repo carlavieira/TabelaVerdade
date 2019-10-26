@@ -13,7 +13,8 @@ public class Testes {
 
 	public static void main(String[] args) {
 
-		String fraseLogica = "p+q*(!p+r)*s";
+		String fraseLogica = "p+q∧(¬p+r)∧s";
+		String fraseLogica2 = "!(p∧q∧(r∧p∧(p+r)))";
 
 		TabelaVerdade tv = new TabelaVerdade(fraseLogica);
 
