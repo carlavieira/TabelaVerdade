@@ -1,4 +1,4 @@
-package sample;
+package calculator;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -136,7 +136,6 @@ public class Controller implements Initializable {
         }
         return false;
     }
-
 
 
     @Override
