@@ -98,11 +98,7 @@ public class Controller implements Initializable {
 
             TabelaVerdade tv = new TabelaVerdade(fraseLogica.toString());
             String[][] matrizLogica = tv.retornaMatrizLogica();
-//            System.out.println();
-//            for (int i = 0;i< matrizLogica.length; i++)
-//                System.out.println(matrizLogica[i][0]);
-//            for (int i = 0;i< matrizLogica.length; i++)
-//                System.out.println(matrizLogica[0][i]);
+
 
 
             for (int i = 0; i < fraseLogica.length(); i++) {

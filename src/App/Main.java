@@ -46,7 +46,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        String fraseLogica = "pvq∧(¬pvr)∧s";
+        String fraseLogica = "pvq∧(¬(pvr))";
         String fraseLogica2 = "¬(p∧q∧(r∧p∧(pvr)))";
 
         TabelaVerdade tv = new TabelaVerdade(fraseLogica);
@@ -54,28 +54,30 @@ public class Main extends Application {
         String[][] strings = tv.retornaMatrizLogica();
         System.out.println(strings.length);
         System.out.println(strings[0].length);
-        String[][] strings2 = new String[12][17];
+        String[][] strings2 = new String[strings[0].length][strings.length];
 
-
-        for (int i = 0; i < strings2.length; i++) {
-
-            strings2[0][i] = strings[0][i];
-            System.out.print(strings2[0][i] + " ");
+        for (int i = 0; i < 17; i++) {
+            for (int j = 0; j < 12; j++) {
+                strings2[i][j] = strings[j][i];
+                System.out.print(strings2[i][j] + " ");
+            }
+            System.out.println(" ");
         }
+
         System.out.println(" ");
-        for (int i = 0; i < strings2.length; i++) {
-
-            strings2[1][i] = strings[1][i];
-            System.out.print(strings2[1][i] + " ");
-        }
+//        for (int i = 0; i < strings2.length; i++) {
+//
+//            strings2[1][i] = strings[1][i];
+//            System.out.print(strings2[1][i] + " ");
+//        }
 
 //        System.out.println(" ");
-//        for (int i = 0; i < strings.length; i++) {
-//            for (int j = 0; j < strings[0].length; j++) {
-//               System.out.print(strings[i][j]+" ");
-//            }
-//            System.out.println(" ");
-//        }
+        for (int i = 0; i < strings.length; i++) {
+            for (int j = 0; j < strings[0].length; j++) {
+               System.out.print(strings[i][j]+" ");
+            }
+            System.out.println(" ");
+        }
 
 
 
