@@ -1,19 +1,27 @@
 package calculator;
 
 import Objects.TabelaVerdade;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
+import javafx.util.Callback;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 
 public class Controller implements Initializable {
-
 
     private char[] propositions = new char[]{'p', 'q', 'r', 's'};
     private char[] connectors = new char[]{'¬', '∧', 'v', '*', '→', '↔'};
@@ -22,7 +30,7 @@ public class Controller implements Initializable {
     private TextField display;
 
     @FXML
-    private TableView outputTable;
+    private TableView<String[]> outputTable;
 
     @FXML
     private Button deleteButton;
@@ -95,18 +103,39 @@ public class Controller implements Initializable {
             for (char element : arrayChar) {
                 fraseLogica.append(element);
             }
-
+            System.out.println(fraseLogica.toString());
             TabelaVerdade tv = new TabelaVerdade(fraseLogica.toString());
             String[][] matrizLogica = tv.retornaMatrizLogica();
 
-
-
-            for (int i = 0; i < fraseLogica.length(); i++) {
-                for (int j = 0; j < 17; j++) {
-                    System.out.print(matrizLogica[i][j] + " ");
+            String[][] matrizExibicao = new String[matrizLogica[0].length][matrizLogica.length];
+            for (int i = 0; i < matrizExibicao.length; i++) {
+                for (int j = 0; j < matrizExibicao[0].length; j++) {
+                    matrizExibicao[i][j] = matrizLogica[j][i];
                 }
-                System.out.println("");
             }
+            //ate aqui temos a matriz para exibir no table view
+
+//            StackPane root = new StackPane();
+//            ObservableList<String[]> data = FXCollections.observableArrayList();
+//            data.addAll(Arrays.asList(matrizExibicao));
+//            data.remove(0);//remove titles from data
+//            outputTable = new TableView<>();
+//            for (int i = 0; i < matrizExibicao[0].length; i++) {
+//                TableColumn tc = new TableColumn(matrizExibicao[0][i]);
+//                final int colNo = i;
+//                tc.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<String[], String>, ObservableValue<String>>() {
+//                    @Override
+//                    public ObservableValue<String> call(TableColumn.CellDataFeatures<String[], String> p) {
+//                        return new SimpleStringProperty((p.getValue()[colNo]));
+//                    }
+//                });
+//                tc.setPrefWidth(90);
+//                outputTable.getColumns().add(tc);
+//            }
+//            outputTable.setItems(data);
+//            root.getChildren().add(outputTable);
+//            primaryStage.setScene(new Scene(root, 800, 600));
+//            primaryStage.show();
         }
     }
 

@@ -54,10 +54,11 @@ public class Main extends Application {
         String[][] strings = tv.retornaMatrizLogica();
         System.out.println(strings.length);
         System.out.println(strings[0].length);
+
         String[][] strings2 = new String[strings[0].length][strings.length];
 
-        for (int i = 0; i < 17; i++) {
-            for (int j = 0; j < 12; j++) {
+        for (int i = 0; i < strings2.length; i++) {
+            for (int j = 0; j < strings2[0].length; j++) {
                 strings2[i][j] = strings[j][i];
                 System.out.print(strings2[i][j] + " ");
             }
