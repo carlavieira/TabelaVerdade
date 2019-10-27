@@ -8,12 +8,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 import java.net.URL;
@@ -30,7 +29,37 @@ public class Controller implements Initializable {
     private TextField display;
 
     @FXML
-    private TableView<String[]> outputTable;
+    private TableView<TableModel> outputTable;
+    @FXML
+    private TableColumn<TableModel, String> column0;
+    @FXML
+    private TableColumn<TableModel, String> column1;
+    @FXML
+    private TableColumn<TableModel, String> column2;
+    @FXML
+    private TableColumn<TableModel, String> column3;
+    @FXML
+    private TableColumn<TableModel, String> column4;
+    @FXML
+    private TableColumn<TableModel, String> column5;
+    @FXML
+    private TableColumn<TableModel, String> column6;
+    @FXML
+    private TableColumn<TableModel, String> column7;
+    @FXML
+    private TableColumn<TableModel, String> column8;
+    @FXML
+    private TableColumn<TableModel, String> column9;
+    @FXML
+    private TableColumn<TableModel, String> column10;
+    @FXML
+    private TableColumn<TableModel, String> column11;
+    @FXML
+    private TableColumn<TableModel, String> column12;
+    @FXML
+    private TableColumn<TableModel, String> column13;
+    @FXML
+    private TableColumn<TableModel, String> column14;
 
     @FXML
     private Button deleteButton;
@@ -96,10 +125,40 @@ public class Controller implements Initializable {
             if (display.getText().length() > 0)
                 display.setText(display.getText().substring(0, (display.getText().length() - 1)));
         } else if (event.getSource() == generateButton) {
-            //outputTable = new TableView<>();
-            char[] arrayChar = display.getText().toCharArray();
+            char[] arrayCharComplete = new char[14];
+            char [] textDisplay = display.getText().toCharArray();
+            int m = 0;
+            for (char element : textDisplay) {
+                arrayCharComplete[m] = element;
+                m++;
+            }
+            column0.setText(String.valueOf(arrayCharComplete[0]));
+            column1.setText(String.valueOf(arrayCharComplete[1]));
+            column2.setText(String.valueOf(arrayCharComplete[2]));
+            column3.setText(String.valueOf(arrayCharComplete[3]));
+            column4.setText(String.valueOf(arrayCharComplete[4]));
+            column5.setText(String.valueOf(arrayCharComplete[5]));
+            column6.setText(String.valueOf(arrayCharComplete[6]));
+            column7.setText(String.valueOf(arrayCharComplete[7]));
+            column8.setText(String.valueOf(arrayCharComplete[8]));
+            column9.setText(String.valueOf(arrayCharComplete[9]));
+            column10.setText(String.valueOf(arrayCharComplete[10]));
+            column11.setText(String.valueOf(arrayCharComplete[11]));
+
+            column0.setCellValueFactory(new PropertyValueFactory<>("column0"));
+            column1.setCellValueFactory(new PropertyValueFactory<>("column1"));
+            column2.setCellValueFactory(new PropertyValueFactory<>("column2"));
+            column3.setCellValueFactory(new PropertyValueFactory<>("column3"));
+            outputTable.setItems(tableModel);
+        }
+
+        // add your data here from any source
+        private ObservableList<TableModel> tableModel = FXCollections.observableArrayList(
+                new TableModel("V", "F"),
+                new TableModel("V", "F", "V", "F"),
+                );
             StringBuilder fraseLogica = new StringBuilder();
-            for (char element : arrayChar) {
+            for (char element : arrayCharComplete) {
                 fraseLogica.append(element);
             }
             System.out.println(fraseLogica.toString());
