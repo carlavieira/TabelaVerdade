@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.StackPane?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculator.Controller">
    <children>
-
       <Button fx:id="generateButton" layoutX="470.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="112.0" text="Gerar" />
       <TableView fx:id="outputTable" layoutX="168.0" layoutY="52.0" prefHeight="333.0" prefWidth="411.0" />
       <Button fx:id="predicatePButton" layoutX="28.0" layoutY="76.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="54.0" text="p" textFill="#5c5c5c" />

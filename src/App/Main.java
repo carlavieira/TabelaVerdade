@@ -1,39 +1,7 @@
 package App;
 
 import Objects.TabelaVerdade;
-import javafx.geometry.Pos;
-import utils.StringsUtil;
 
-//public class Main {
-//        public static void main(String args[]) {
-//        try {
-//            String equation = "(((!(q+p))*r)=s)";
-//            System.out.println(StringsUtil.propositionList(equation).toString());
-//            System.out.println(StringsUtil.conectivesList(equation).toString());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//    private static void imprimeValoresDaTabela(String frase, String[][] tabela) {
-//        for (int i = 0; i < frase.length(); i++) {
-//            for (int j = 0; j < 17; j++) {
-//                System.out.print(tabela[i][j] + " ");
-//                System.out.println("I :"+i+" J" +j);
-//            }
-//            System.out.println("");
-//        }
-//    }
-//
-//    public static void main(String[] args) {
-//
-//        String fraseLogica = "pvq∧(¬pvr)∧s";
-//        String fraseLogica2 = "¬(p∧q∧(r∧p∧(pvr)))";
-//
-//        TabelaVerdade tv = new TabelaVerdade(fraseLogica);
-//
-//        imprimeValoresDaTabela(fraseLogica, tv.retornaMatrizLogica());
-//    }
-//}
 
 import javafx.application.Application;
 import javafx.scene.Scene;

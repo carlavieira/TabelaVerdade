@@ -96,17 +96,15 @@ public class Controller implements Initializable {
             if (display.getText().length() > 0)
                 display.setText(display.getText().substring(0, (display.getText().length() - 1)));
         } else if (event.getSource() == generateButton) {
-            outputTable = new TableView<>();
+            //outputTable = new TableView<>();
             char[] arrayChar = display.getText().toCharArray();
             StringBuilder fraseLogica = new StringBuilder();
-
             for (char element : arrayChar) {
                 fraseLogica.append(element);
             }
             System.out.println(fraseLogica.toString());
             TabelaVerdade tv = new TabelaVerdade(fraseLogica.toString());
             String[][] matrizLogica = tv.retornaMatrizLogica();
-
             String[][] matrizExibicao = new String[matrizLogica[0].length][matrizLogica.length];
             for (int i = 0; i < matrizExibicao.length; i++) {
                 for (int j = 0; j < matrizExibicao[0].length; j++) {
@@ -116,23 +114,23 @@ public class Controller implements Initializable {
             //ate aqui temos a matriz para exibir no table view
 
 //            StackPane root = new StackPane();
-//            ObservableList<String[]> data = FXCollections.observableArrayList();
-//            data.addAll(Arrays.asList(matrizExibicao));
-//            data.remove(0);//remove titles from data
-//            outputTable = new TableView<>();
-//            for (int i = 0; i < matrizExibicao[0].length; i++) {
-//                TableColumn tc = new TableColumn(matrizExibicao[0][i]);
-//                final int colNo = i;
-//                tc.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<String[], String>, ObservableValue<String>>() {
-//                    @Override
-//                    public ObservableValue<String> call(TableColumn.CellDataFeatures<String[], String> p) {
-//                        return new SimpleStringProperty((p.getValue()[colNo]));
-//                    }
-//                });
-//                tc.setPrefWidth(90);
-//                outputTable.getColumns().add(tc);
-//            }
-//            outputTable.setItems(data);
+            ObservableList<String[]> data = FXCollections.observableArrayList();
+            data.addAll(Arrays.asList(matrizExibicao));
+            data.remove(0);//remove titles from data
+            outputTable = new TableView<>();
+            for (int i = 0; i < matrizExibicao[0].length; i++) {
+                TableColumn tc = new TableColumn(matrizExibicao[0][i]);
+                final int colNo = i;
+                tc.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<String[], String>, ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<String[], String> p) {
+                        return new SimpleStringProperty((p.getValue()[colNo]));
+                    }
+                });
+                tc.setPrefWidth(90);
+                outputTable.getColumns().add(tc);
+            }
+            outputTable.setItems(data);
 //            root.getChildren().add(outputTable);
 //            primaryStage.setScene(new Scene(root, 800, 600));
 //            primaryStage.show();
