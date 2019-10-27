@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.net.URL;
@@ -96,13 +98,11 @@ public class Controller implements Initializable {
             if (display.getText().length() > 0)
                 display.setText(display.getText().substring(0, (display.getText().length() - 1)));
         } else if (event.getSource() == generateButton) {
-            //outputTable = new TableView<>();
             char[] arrayChar = display.getText().toCharArray();
             StringBuilder fraseLogica = new StringBuilder();
             for (char element : arrayChar) {
                 fraseLogica.append(element);
             }
-            System.out.println(fraseLogica.toString());
             TabelaVerdade tv = new TabelaVerdade(fraseLogica.toString());
             String[][] matrizLogica = tv.retornaMatrizLogica();
             String[][] matrizExibicao = new String[matrizLogica[0].length][matrizLogica.length];
@@ -113,11 +113,11 @@ public class Controller implements Initializable {
             }
             //ate aqui temos a matriz para exibir no table view
 
-//            StackPane root = new StackPane();
+            StackPane root = new StackPane();
             ObservableList<String[]> data = FXCollections.observableArrayList();
             data.addAll(Arrays.asList(matrizExibicao));
             data.remove(0);//remove titles from data
-            outputTable = new TableView<>();
+            TableView<String[]> table = new TableView<>();
             for (int i = 0; i < matrizExibicao[0].length; i++) {
                 TableColumn tc = new TableColumn(matrizExibicao[0][i]);
                 final int colNo = i;
@@ -128,12 +128,14 @@ public class Controller implements Initializable {
                     }
                 });
                 tc.setPrefWidth(90);
-                outputTable.getColumns().add(tc);
+                table.getColumns().add(tc);
             }
-            outputTable.setItems(data);
-//            root.getChildren().add(outputTable);
-//            primaryStage.setScene(new Scene(root, 800, 600));
-//            primaryStage.show();
+            table.setItems(data);
+            root.getChildren().add(table);
+            Stage stage = new Stage();
+            stage.setTitle("Truth Table");
+            stage.setScene(new Scene(root, 800, 600));
+            stage.show();
         }
     }
 
