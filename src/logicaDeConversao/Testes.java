@@ -13,12 +13,12 @@ public class Testes {
 
 	public static void main(String[] args) {
 
-		String fraseLogica = "p+q∧(¬p+r)∧s";
-		String fraseLogica2 = "!(p∧q∧(r∧p∧(p+r)))";
+		String fraseLogica = "pvq∧(¬pvr)∧s";
+		String fraseLogica2 = "¬(p∧q∧(r∧p∧(pvr)))";
 
-		TabelaVerdade tv = new TabelaVerdade(fraseLogica);
+		TabelaVerdade tv = new TabelaVerdade(fraseLogica2);
 
-		imprimeValoresDaTabela(fraseLogica, tv.retornaMatrizLogica());
+		imprimeValoresDaTabela(fraseLogica2, tv.retornaMatrizLogica());
 	}
 
 }
