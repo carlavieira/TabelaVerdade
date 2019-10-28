@@ -35,9 +35,8 @@ public class TabelaVerdade {
     private void rodaConversao() {
         pegaCaracterDeCadaColuna();
         completaTodosOsValoresVazios();
-        completaValoresVaziosDosParenteses();
         pegaNumeroDeLinhasUsadas();
-        pegaValoresSimplesDasPreposicoes();
+        pegaValoresSimplesDasPreposicoes(); // Até aqui tá TOP
         resolveDentroDosParenteses();
         resolve(0, tamanhoFraseLogica - 1);
     }
@@ -52,16 +51,6 @@ public class TabelaVerdade {
         for (int i = 0; i < tamanhoFraseLogica; i++) {
             for (int j = 1; j < 17; j++) {
                 matrizLogicaString[i][j] = " ";
-            }
-        }
-    }
-
-    private void completaValoresVaziosDosParenteses() {
-        for (int i = 0; i < fraseLogica.length(); i++) {
-            if (matrizLogicaString[i][0].matches("(|)")) {
-                for (int j = 1; j < 17; j++) {
-                    matrizLogicaString[i][j] = " ";
-                }
             }
         }
     }
@@ -185,6 +174,7 @@ public class TabelaVerdade {
 
         int indiceInicio = 0;
         int indiceFinal = 0;
+        boolean achouIndiceFinal = false;
 
         for (int i = 0; i < tamanhoFraseLogica; i++) {
             if (matrizLogicaString[i][0].matches("\\(")
@@ -193,7 +183,10 @@ public class TabelaVerdade {
             }
             if (matrizLogicaString[i][0].matches("\\)")
                     && !(indiceParentesesJaTratados.contains(new Integer(i)))) {
-                indiceFinal = i;
+                if (!achouIndiceFinal) {
+                    indiceFinal = i;
+                    achouIndiceFinal = true;
+                }
             }
         }
 
@@ -217,8 +210,8 @@ public class TabelaVerdade {
         for (int i = indiceInicio; i < indiceFinal; i++) {
             if (matrizLogicaString[i][0].matches("¬")) {
                 if (matrizLogicaString[i + 1][0].matches("\\(")) {
-                    int indiceValorParenteses = pegaIndiceValorParentesesDireita(i + 1);
-                    nega(indiceValorParenteses, i);
+                    int indiceValorInternoParenteses = pegaIndiceValorParentesesDireita(i + 1);
+                    nega(indiceValorInternoParenteses, i);
                 } else {
                     nega(i + 1, i);
                 }
@@ -251,7 +244,7 @@ public class TabelaVerdade {
         int parentesesAMais = 0;
         int retorno = 0;
 
-        for (int i = indiceParentesesInicio; i < tamanhoFraseLogica; i++) {
+        for (int i = indiceParentesesInicio + 1; i < tamanhoFraseLogica; i++) {
             if (matrizLogicaString[i][0].matches("\\(")) {
                 parentesesAMais++;
             } else if (matrizLogicaString[i][0].matches("\\)")) {
@@ -270,7 +263,7 @@ public class TabelaVerdade {
         int parentesesAMais = 0;
         int retorno = 0;
 
-        for (int i = indiceParentesesFinal; i > 0; i--) {
+        for (int i = indiceParentesesFinal - 1; i > 0; i--) {
             if (matrizLogicaString[i][0].matches("\\)")) {
                 parentesesAMais++;
             } else if (matrizLogicaString[i][0].matches("\\(")) {
@@ -287,45 +280,76 @@ public class TabelaVerdade {
 
     private int pegaIndiceDeMaiorPrioridade(int indiceInicio, int indiceFinal) {
 
-        int indiceRetorno = indiceInicio;
+        int indiceInicioReal = indiceInicio, indiceFinalReal = indiceFinal;
 
-        for (int i = indiceInicio; i < indiceFinal; i++) {
+        if (matrizLogicaString[indiceInicio][0].matches("\\(")) {
+            indiceInicioReal = indiceInicio + 1;
+        }
+
+        if (matrizLogicaString[indiceFinal][0].matches("\\)")) {
+            indiceFinalReal = indiceFinal - 1;
+        }
+
+        int indiceRetorno = indiceInicioReal;
+
+        for (int i = indiceInicioReal; i < indiceFinalReal; i++) {
+            if (matrizLogicaString[i][0].matches("\\(")) {
+                i = pegaParentesesFinalCorrespondente(i);
+            }
             if (matrizLogicaString[i][0].matches("p|q|r|s")) {
                 indiceRetorno = i;
             }
         }
 
-        for (int i = indiceInicio; i < indiceFinal; i++) {
+        for (int i = indiceInicioReal; i < indiceFinalReal; i++) {
+            if (matrizLogicaString[i][0].matches("\\(")) {
+                i = pegaParentesesFinalCorrespondente(i);
+            }
             if (matrizLogicaString[i][0].matches("¬")) {
                 indiceRetorno = i;
             }
         }
 
-        for (int i = indiceInicio; i < indiceFinal; i++) {
+        for (int i = indiceInicioReal; i < indiceFinalReal; i++) {
+            if (matrizLogicaString[i][0].matches("\\(")) {
+                i = pegaParentesesFinalCorrespondente(i);
+            }
             if (matrizLogicaString[i][0].matches("∧")) {
                 indiceRetorno = i;
             }
         }
 
-        for (int i = indiceInicio; i < indiceFinal; i++) {
+        for (int i = indiceInicioReal; i < indiceFinalReal; i++) {
+            if (matrizLogicaString[i][0].matches("\\(")) {
+                i = pegaParentesesFinalCorrespondente(i);
+            }
             if (matrizLogicaString[i][0].matches("v")) {
                 indiceRetorno = i;
             }
         }
 
-        for (int i = indiceInicio; i < indiceFinal; i++) {
+        for (int i = indiceInicioReal; i < indiceFinalReal; i++) {
+            if (matrizLogicaString[i][0].matches("\\(")) {
+                i = pegaParentesesFinalCorrespondente(i);
+            }
             if (matrizLogicaString[i][0].matches("\\*")) {
                 indiceRetorno = i;
             }
         }
 
-        for (int i = indiceInicio; i < indiceFinal; i++) {
+        for (int i = indiceInicioReal; i < indiceFinalReal; i++) {
+            if (matrizLogicaString[i][0].matches("\\(")) {
+                i = pegaParentesesFinalCorrespondente(i);
+            }
             if (matrizLogicaString[i][0].matches("→")) {
                 indiceRetorno = i;
             }
         }
 
-        for (int i = indiceInicio; i < indiceFinal; i++) {
+        for (int i = indiceInicioReal; i < indiceFinalReal; i++) {
+            if (matrizLogicaString[i][0].matches("\\(")) {
+                i = pegaParentesesFinalCorrespondente(i);
+            }
             if (matrizLogicaString[i][0].matches("↔")) {
                 indiceRetorno = i;
             }
@@ -438,6 +462,8 @@ public class TabelaVerdade {
         for (int i = indiceAtual - 1; i > 0; i--) {
             if (matrizLogicaString[i][0].matches("\\)")) {
                 i = pegaParentesesInicialCorrespondente(i);
+            } else if (matrizLogicaString[i][0].matches("\\(")) {
+                return retorno;
             } else if (matrizLogicaString[i][0].matches("v|∧|\\*|→|↔|¬")) {
                 retorno[1] = i;
                 if (dicionarioDePrioridadesDeConectivos
@@ -464,6 +490,8 @@ public class TabelaVerdade {
         for (int i = indiceAtual + 1; i < tamanhoFraseLogica; i++) {
             if (matrizLogicaString[i][0].matches("\\(")) {
                 i = pegaParentesesFinalCorrespondente(i);
+            } else if (matrizLogicaString[i][0].matches("\\)")) {
+                return retorno;
             } else if (matrizLogicaString[i][0].matches("v|∧|\\*|→|↔|¬")) {
                 retorno[1] = i;
                 if (dicionarioDePrioridadesDeConectivos
@@ -609,16 +637,9 @@ public class TabelaVerdade {
         }
     }
 
-    /*
-     * private boolean[][] pegaMatrizLogicaBool() { boolean[][] retorno = new
-     * boolean[tamanhoFraseLogica][17];
-     *
-     * for (int i = 0; i < tamanhoFraseLogica; i++) { for (int j = 1; j < 17; j++) {
-     * if (matrizLogicaString[i][j].matches("V")) { retorno[i][j] = true; } else if
-     * (matrizLogicaString[i][j].matches("F")) { retorno[i][j] = false; } } }
-     *
-     * return retorno; }
-     */
+    public int pegaIndiceColunaFinal() {
+        return this.pegaIndiceDeMaiorPrioridade(0, tamanhoFraseLogica - 1);
+    }
 
     public String[][] retornaMatrizLogica() {
 

@@ -108,7 +108,7 @@ public class Controller implements Initializable {
                     matrizExibicao[i][j] = matrizLogica[j][i];
                 }
             }
-            //ate aqui temos a matriz para exibir no table view
+
 
             StackPane root = new StackPane();
             ObservableList<String[]> data = FXCollections.observableArrayList();
@@ -124,8 +124,11 @@ public class Controller implements Initializable {
                         return new SimpleStringProperty((p.getValue()[colNo]));
                     }
                 });
-                tc.setPrefWidth(90);
-                tc.setStyle( "-fx-alignment: CENTER;");
+                tc.setPrefWidth(60);
+                tc.setStyle( "-fx-alignment: CENTER; -fx-text-fill: gray;");
+                if (tv.pegaIndiceColunaFinal()==i) {
+                    tc.setStyle("-fx-font-weight: bold;  -fx-alignment: CENTER;");
+                }
                 table.getColumns().add(tc);
             }
             table.setItems(data);
