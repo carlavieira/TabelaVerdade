@@ -125,6 +125,7 @@ public class Controller implements Initializable {
                     }
                 });
                 tc.setPrefWidth(90);
+                tc.setStyle( "-fx-alignment: CENTER;");
                 table.getColumns().add(tc);
             }
             table.setItems(data);
