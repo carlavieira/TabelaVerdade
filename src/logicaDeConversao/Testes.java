@@ -15,10 +15,11 @@ public class Testes {
 
 		String fraseLogica = "pvq∧(¬pvr)∧s";
 		String fraseLogica2 = "¬(p∧q∧(r∧p∧(pvr)))";
+		String fraseTeste1 = "q∧(pvq)";
 
-		TabelaVerdade tv = new TabelaVerdade(fraseLogica2);
+		TabelaVerdade tv = new TabelaVerdade(fraseTeste1);
 
-		imprimeValoresDaTabela(fraseLogica2, tv.retornaMatrizLogica());
+		imprimeValoresDaTabela(fraseTeste1, tv.retornaMatrizLogica());
 	}
 
 }
