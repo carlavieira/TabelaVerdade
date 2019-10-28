@@ -375,16 +375,9 @@ public class TabelaVerdade {
 
 				if (matrizLogicaString[i + 1][0].matches("\\(")) {
 					indiceValorDireita = pegaIndiceValorParentesesDireita(i + 1);
-					System.out.println(
-							"And tem parenteses na direita. Indice do valor pego no parenteses: "
-									+ indiceValorDireita);
 
 				} else {
 					indiceValorDireita = i + 1;
-					System.out.println(
-							"And tem proposicao na direita. Indice do valor pego da proposicao: "
-									+ indiceValorDireita);
-
 				}
 
 				int[] conectivoAnterior = temConectivoAntes(i, "∧");
