@@ -50,7 +50,7 @@ public class TabelaVerdade {
     private void completaTodosOsValoresVazios() {
         for (int i = 0; i < tamanhoFraseLogica; i++) {
             for (int j = 1; j < 17; j++) {
-                matrizLogicaString[i][j] = " ";
+                matrizLogicaString[i][j] = "-";
             }
         }
     }
@@ -467,7 +467,7 @@ public class TabelaVerdade {
             } else if (matrizLogicaString[i][0].matches("v|∧|\\*|→|↔|¬")) {
                 retorno[1] = i;
                 if (dicionarioDePrioridadesDeConectivos
-                        .get(conectivo) <= dicionarioDePrioridadesDeConectivos
+                        .get(conectivo) >= dicionarioDePrioridadesDeConectivos
                         .get(matrizLogicaString[i][0])) {
                     retorno[0] = 1;
                     return retorno;
