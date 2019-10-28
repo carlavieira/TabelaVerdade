@@ -25,6 +25,6 @@
       <Button fx:id="biconditionalButton" layoutX="254.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="54.0" text="↔" />
       <Button fx:id="parenthesesLeftButton" layoutX="28.0" layoutY="148.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="54.0" text="(" />
       <Button fx:id="parenthesesRightButton" layoutX="96.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="54.0" text=")" />
-      <TextField fx:id="display" editable="true" layoutX="34.0" layoutY="25.0" prefHeight="27.0" prefWidth="279.0" />
+      <TextField fx:id="display" editable="false" layoutX="34.0" layoutY="25.0" prefHeight="27.0" prefWidth="279.0" />
    </children>
 </Pane>

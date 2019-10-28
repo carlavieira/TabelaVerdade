@@ -131,7 +131,7 @@ public class Controller implements Initializable {
             root.getChildren().add(table);
             Stage stage = new Stage();
             stage.setTitle("Tabela Verdade");
-            stage.setScene(new Scene(root, 600, 400));
+            stage.setScene(new Scene(root, 800, 600));
             stage.show();
         }
     }
