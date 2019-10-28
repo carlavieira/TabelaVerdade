@@ -7,7 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,8 +30,6 @@ public class Controller implements Initializable {
     @FXML
     private TextField display;
 
-    @FXML
-    private TableView<String[]> outputTable;
 
     @FXML
     private Button deleteButton;
@@ -133,8 +130,8 @@ public class Controller implements Initializable {
             table.setItems(data);
             root.getChildren().add(table);
             Stage stage = new Stage();
-            stage.setTitle("Truth Table");
-            stage.setScene(new Scene(root, 800, 600));
+            stage.setTitle("Tabela Verdade");
+            stage.setScene(new Scene(root, 600, 400));
             stage.show();
         }
     }
