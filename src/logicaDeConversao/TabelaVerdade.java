@@ -390,6 +390,9 @@ public class TabelaVerdade {
 					indiceValorEsquerda = i - 1;
 				}
 
+				System.out.println("Indice da esquerda: " + indiceValorEsquerda);
+				System.out.println("Indice da direita: " + indiceValorDireita);
+
 				and(indiceValorEsquerda, indiceValorDireita, i);
 
 			}
@@ -465,9 +468,11 @@ public class TabelaVerdade {
 			} else if (matrizLogicaString[i][0].matches("\\(")) {
 				return retorno;
 			} else if (matrizLogicaString[i][0].matches("v|∧|\\*|→|↔|¬")) {
+				System.out.println(
+						"Deu match: " + dicionarioDePrioridadesDeConectivos.get(conectivo));
 				retorno[1] = i;
 				if (dicionarioDePrioridadesDeConectivos
-						.get(conectivo) <= dicionarioDePrioridadesDeConectivos
+						.get(conectivo) >= dicionarioDePrioridadesDeConectivos
 								.get(matrizLogicaString[i][0])) {
 					retorno[0] = 1;
 					return retorno;
