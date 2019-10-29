@@ -15,7 +15,7 @@ public class Testes {
 
 		String fraseLogica = "pvq∧(¬pvr)∧s";
 		String fraseLogica2 = "¬(p∧q∧(r∧p∧(pvr)))";
-		String fraseTeste1 = "(¬(pvq))→(¬p∧¬q)";
+		String fraseTeste1 = "¬pvq";
 
 		TabelaVerdade tv = new TabelaVerdade(fraseTeste1);
 

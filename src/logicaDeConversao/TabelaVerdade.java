@@ -459,7 +459,7 @@ public class TabelaVerdade {
 		retorno[0] = -1;
 		retorno[1] = -1;
 
-		for (int i = indiceAtual - 1; i > 0; i--) {
+		for (int i = indiceAtual - 1; i >= 0; i--) {
 			if (matrizLogicaString[i][0].matches("\\)")) {
 				i = pegaParentesesInicialCorrespondente(i);
 			} else if (matrizLogicaString[i][0].matches("\\(")) {
@@ -470,6 +470,7 @@ public class TabelaVerdade {
 						.get(conectivo) >= dicionarioDePrioridadesDeConectivos
 								.get(matrizLogicaString[i][0])) {
 					retorno[0] = 1;
+
 					return retorno;
 				} else {
 					retorno[0] = -1;
@@ -477,6 +478,7 @@ public class TabelaVerdade {
 				}
 			}
 		}
+
 		return retorno;
 	}
 
@@ -495,7 +497,7 @@ public class TabelaVerdade {
 			} else if (matrizLogicaString[i][0].matches("v|∧|\\*|→|↔|¬")) {
 				retorno[1] = i;
 				if (dicionarioDePrioridadesDeConectivos
-						.get(conectivo) < dicionarioDePrioridadesDeConectivos
+						.get(conectivo) > dicionarioDePrioridadesDeConectivos
 								.get(matrizLogicaString[i][0])) {
 					retorno[0] = 1;
 					return retorno;
@@ -505,6 +507,7 @@ public class TabelaVerdade {
 				}
 			}
 		}
+
 		return retorno;
 
 	}
