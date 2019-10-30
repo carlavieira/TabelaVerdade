@@ -50,7 +50,7 @@ public class TabelaVerdade {
     private void completaTodosOsValoresVazios() {
         for (int i = 0; i < tamanhoFraseLogica; i++) {
             for (int j = 1; j < 17; j++) {
-                matrizLogicaString[i][j] = "-";
+                matrizLogicaString[i][j] = " ";
             }
         }
     }
