@@ -76,7 +76,7 @@ public class Controller implements Initializable {
         } else if (event.getSource() == predicateSButton) {
             if (permissionPropositions()) display.setText(display.getText() + "s");
         } else if (event.getSource() == negationButton) {
-            if (pemissionNegation()) display.setText(display.getText() + "¬");
+            if (permissionPropositions()) display.setText(display.getText() + "¬");
         } else if (event.getSource() == andButton) {
             if (permissionConnectors()) display.setText(display.getText() + "∧");
         } else if (event.getSource() == orButton) {
@@ -108,7 +108,7 @@ public class Controller implements Initializable {
                     matrizExibicao[i][j] = matrizLogica[j][i];
                 }
             }
-            //ate aqui temos a matriz para exibir no table view
+
 
             StackPane root = new StackPane();
             ObservableList<String[]> data = FXCollections.observableArrayList();
@@ -124,8 +124,11 @@ public class Controller implements Initializable {
                         return new SimpleStringProperty((p.getValue()[colNo]));
                     }
                 });
-                tc.setPrefWidth(90);
-                tc.setStyle( "-fx-alignment: CENTER;");
+                tc.setPrefWidth(60);
+                tc.setStyle( "-fx-alignment: CENTER; -fx-text-fill: gray;");
+                if (tv.pegaIndiceColunaFinal()==i) {
+                    tc.setStyle("-fx-font-weight: bold;  -fx-alignment: CENTER;");
+                }
                 table.getColumns().add(tc);
             }
             table.setItems(data);
@@ -145,11 +148,11 @@ public class Controller implements Initializable {
         else return true;
     }
 
-    boolean pemissionNegation() {
-        char[] arrayChar = display.getText().toCharArray();
-        if (arrayChar.length > 0) return (arrayChar[arrayChar.length - 1] == '(');
-        else return true;
-    }
+//    boolean pemissionNegation() {
+//        char[] arrayChar = display.getText().toCharArray();
+//        if (arrayChar.length > 0) return (arrayChar[arrayChar.length - 1] == '(');
+//        else return true;
+//    }
 
     boolean permissionConnectors() {
         int numConnectors = 0;
